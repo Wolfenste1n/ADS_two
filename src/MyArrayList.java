@@ -1,53 +1,71 @@
-public class MyArrayList<T> implements MyList<T>{
+import java.util.Iterator;
+
+public class MyArrayList<T> implements MyList<T> {
     private Object[] elements;
-    private int lenght;
+    private int length;
 
     public MyArrayList() {
         elements = new Object[5];
-        lenght = 0;
+        length = 0;
     }
 
-    public void add(T item){
-        if(lenght == elements.length){
-            increaseBuffer();
+    public void add(T element) {
+        if (length == elements.length) {
+            increaseCapacity();
         }
-        elements[lenght++] = item; //upcasting
+        elements[length++] = element;
     }
 
-    private void increaseBuffer() {
-        Object[] newElements = new Object[lenght*2];
-        for(int i = 0; i < elements.length; i++){
-            newElements[i] = elements[i];
+    private void increaseCapacity() {
+        Object[] newElements = new Object[elements.length * 2];
+        for (int i = 0; i < elements.length; i++) {
+            newElements[i] = elements[i]; //upcasting
         }
         elements = newElements;
     }
 
-    public int size(){
-        return lenght;
-    }
-
-    public T get(int index){
+    public T get(int index) {
         checkIndex(index);
-        return (T) elements[index];  //downcasting
-    }
-
-    private void checkIndex(int index) {
-        if(index < 0 || index >= lenght){
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + lenght);
-        }
-    }
-
-    public void clear(){
-        elements = new Object[5];
-        lenght = 0;
+        return (T) elements[index]; //downcasting
     }
 
     public void remove(int index){
         checkIndex(index);
-        for(int i = index; i < lenght - 1; i++){
+        for (int i = index; i < length - 1; i++) {
             elements[i] = elements[i+1];
         }
-        lenght--;
+    }
+
+    @Override
+    public void removeLast() {
+
+    }
+
+    @Override
+    public void removeFirst() {
+
+    }
+
+    @Override
+    public void clear() {
+        for (int i = 0; i < length; i++) {
+            elements[i] = null;
+        }
+        length = 0;
+    }
+
+    private void checkIndex(int index){
+        if (index < 0 || index >= length) {
+            throw new IndexOutOfBoundsException("Index: " + index + " not found");
+        }
+    }
+
+    public int size() {
+        return length;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return null;
     }
 }
-//teacher's code//
