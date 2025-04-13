@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
@@ -16,34 +14,10 @@ public class Main {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println("ArrayList");
-                    MyArrayList<Student> list2 = new MyArrayList<>();
-                    list2.add(new Student("Madiyar", 18));
-                    list2.add(new Student("Batyr", 18));
-                    list2.add(new Student("Dima", 19));
-                    list2.add(new Student("Dayana", 17));
-                    list2.add(new Student("Katya", 17));
-                    print(list2);
-                    System.out.println("Element with index 0: " + list2.get(0));
-                    System.out.println("Size of arraylist: " + list2.size());
-                    list2.remove(0);
-                    System.out.println("ArrayList without first element: ");
-                    print(list2);
-                    list2.clear();
-                    System.out.println("Clear arraylist: ");
-                    print(list2);
+                    testArrayList();
                     break;
                 case 2:
-                    System.out.println("LinkedList");
-                    MyLinkedList<Integer> list1 = new MyLinkedList<>();
-                    list1.add(1);
-                    list1.add(2);
-                    list1.add(3);
-                    print(list1);
-                    System.out.println("size of linked list " + list1.size());
-                    list1.clear();
-                    System.out.println("clear linked list: ");
-                    print(list1);
+                    testLinkedList();
                     break;
                 case 3:
                     run = false;
@@ -57,8 +31,40 @@ public class Main {
         scanner.close();
     }
 
-    public static <T> void print(MyList<T> list){
-        for(int i = 0; i < list.size(); i++){
+    public static void testArrayList() {
+        System.out.println("Testing ArrayList");
+        MyArrayList<Student> list = new MyArrayList<>();
+        list.add(new Student("Madiyar", 18));
+        list.add(new Student("Batyr", 18));
+        list.add(new Student("Dima", 19));
+        list.add(new Student("Dayana", 17));
+        list.add(new Student("Katya", 17));
+        print(list);
+        System.out.println("Element with index 0: " + list.get(0));
+        System.out.println("Size of arraylist: " + list.size());
+        list.remove(0);
+        System.out.println("ArrayList without first element: ");
+        print(list);
+        list.clear();
+        System.out.println("Clear arraylist: ");
+        print(list);
+    }
+
+    public static void testLinkedList() {
+        System.out.println("Testing LinkedList");
+        MyLinkedList<Integer> list = new MyLinkedList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        print(list);
+        System.out.println("Size of linked list: " + list.size());
+        list.clear();
+        System.out.println("Clear linked list: ");
+        print(list);
+    }
+
+    public static <T> void print(MyList<T> list) {
+        for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + " ");
         }
         System.out.println();

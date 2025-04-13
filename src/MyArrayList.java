@@ -1,44 +1,70 @@
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class MyArrayList<T> implements MyList<T> {
     private Object[] elements;
-    private int length;
+    private int size;
 
     public MyArrayList() {
-        elements = new Object[5];
-        length = 0;
-    }
-
-    public void add(T element) {
-        if (length == elements.length) {
-            increaseCapacity();
-        }
-        elements[length++] = element;
-    }
-
-    private void increaseCapacity() {
-        Object[] newElements = new Object[elements.length * 2];
-        for (int i = 0; i < elements.length; i++) {
-            newElements[i] = elements[i]; //upcasting
-        }
-        elements = newElements;
-    }
-
-    public T get(int index) {
-        checkIndex(index);
-        return (T) elements[index]; //downcasting
-    }
-
-    public void remove(int index){
-        checkIndex(index);
-        for (int i = index; i < length - 1; i++) {
-            elements[i] = elements[i+1];
-        }
+        elements = new Object[10];
+        size = 0;
     }
 
     @Override
-    public void removeLast() {
+    public void add(T item) {
+        if (size == elements.length) {
+            elements = Arrays.copyOf(elements, size * 2);
+        }
+        elements[size++] = item;
+    }
 
+    @Override
+    public void set(int index, T item) {
+
+    }
+
+    @Override
+    public void add(int index, T item) {
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException();
+        if (size == elements.length) {
+            elements = Arrays.copyOf(elements, size * 2);
+        }
+        System.arraycopy(elements, index, elements, index + 1, size - index);
+        elements[index] = item;
+        size++;
+    }
+
+    @Override
+    public void addFirst(T item) {
+
+    }
+
+    @Override
+    public void addLast(T item) {
+
+    }
+
+    @Override
+    public T get(int index) {
+        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
+        return (T) elements[index];
+    }
+
+    @Override
+    public T getFirst() {
+        return null;
+    }
+
+    @Override
+    public T getLast() {
+        return null;
+    }
+
+    @Override
+    public void remove(int index) {
+        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
+        System.arraycopy(elements, index + 1, elements, index, size - index - 1);
+        elements[--size] = null;
     }
 
     @Override
@@ -47,25 +73,48 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     @Override
+    public void removeLast() {
+
+    }
+
+    @Override
     public void clear() {
-        for (int i = 0; i < length; i++) {
-            elements[i] = null;
-        }
-        length = 0;
+        Arrays.fill(elements, 0, size, null);
+        size = 0;
     }
 
-    private void checkIndex(int index){
-        if (index < 0 || index >= length) {
-            throw new IndexOutOfBoundsException("Index: " + index + " not found");
-        }
-    }
-
+    @Override
     public int size() {
-        return length;
+        return size;
     }
 
     @Override
     public Iterator<T> iterator() {
         return null;
+    }
+
+    @Override
+    public void sort() {
+        Arrays.sort((T[]) elements, 0, size);
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        return 0;
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        return 0;
+    }
+
+    @Override
+    public boolean exists(Object o) {
+        return false;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[0];
     }
 }
