@@ -1,5 +1,6 @@
-Algorithms and Data Structures second assignment by Madiyar Kenzhebayev SE-2407
-Started by using code in moodle provided by teacher
+# Algorithms and Data Structures second assignment by Madiyar Kenzhebayev SE-2407
+## Started by using code in moodle provided by teacher
+### Tested LinkedList and ArrayList by example
 
 - `MyArrayList<T>` — custom dynamic array  
 - `MyLinkedList<T>` — custom doubly linked list  
