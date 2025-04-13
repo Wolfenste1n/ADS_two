@@ -46,3 +46,4 @@ public class MyLinkedList<T> implements MyList<T> {
         return current.data;
     }
 }
+//teacher's code

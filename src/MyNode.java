@@ -7,3 +7,4 @@ public class MyNode<T> {
         next = null;
     }
 }
+//teacher's code

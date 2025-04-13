@@ -50,3 +50,4 @@ public class MyArrayList<T> implements MyList<T>{
         lenght--;
     }
 }
+//teacher's code

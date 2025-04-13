@@ -5,3 +5,4 @@ public interface MyList<T> {
     void clear();
     T get(int index);
 }
+//teacher's code
