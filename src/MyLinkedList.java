@@ -1,5 +1,4 @@
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 public class MyLinkedList<T> implements MyList<T> {
     private static class Node<T> {
@@ -39,7 +38,6 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void add(int index, T item) {
-        if (index < 0 || index > size) throw new IndexOutOfBoundsException();
         if (index == size) {
             add(item);
             return;
@@ -88,13 +86,11 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void removeFirst() {
-        if (head == null) throw new NoSuchElementException();
         unlink(head);
     }
 
     @Override
     public void removeLast() {
-        if (tail == null) throw new NoSuchElementException();
         unlink(tail);
     }
 
@@ -147,7 +143,6 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     private Node<T> getNodeAt(int index) {
-        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
         Node<T> current;
         if (index < size / 2) {
             current = head;
