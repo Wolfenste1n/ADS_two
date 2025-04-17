@@ -3,7 +3,7 @@
 ### Tested LinkedList and ArrayList by example
 ### Use 'Main' to test ArrayList and LinkedList
 
-###Implemented data structures
+Implemented data structures
 - `MyArrayList<T>` 
 - `MyLinkedList<T>` 
 - `MyStack<T>`   
